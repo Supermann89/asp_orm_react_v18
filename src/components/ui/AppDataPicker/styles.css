@@ -1,0 +1,8 @@
+.react-datepicker__triangle {
+    left: 50px !important;
+    transform: none !important;
+}
+
+.react-datepicker__triangle::after {
+    z-index: 0 !important;
+}
