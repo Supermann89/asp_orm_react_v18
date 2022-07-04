@@ -1,6 +1,6 @@
 import * as React from "react";
 import pages from "./pages";
-import { List, ListItem, ListItemText } from "@mui/material";
+import { List, ListItemButton, ListItemText } from "@mui/material";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { useNavigate } from "react-router-dom";
 
@@ -29,13 +29,12 @@ const AppDrawer = ({ open, onOpen, onClose }) => {
           .filter((page) => page?.isMenuPage)
           .map((page) => {
             return (
-              <ListItem
-                button
+              <ListItemButton
                 key={page.title}
                 onClick={() => onClickHandler(pages.root + page.path || "/")}
               >
                 <ListItemText primary={page.title} />
-              </ListItem>
+              </ListItemButton>
             );
           })}
       </List>

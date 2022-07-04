@@ -13,16 +13,15 @@ export default function CustomTable({
   disableCheckColumn = false,
   rows,
   headCells,
+  selected = [],
   onRowSelect,
   onChangePage,
   onChangeRowsPage,
   page,
   rowsPerPage,
 }) {
-
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("id");
-  const [selected, setSelected] = useState([]);
 
   const handleRequestSort = useCallback(
     (event, property) => {
@@ -37,11 +36,9 @@ export default function CustomTable({
     (event) => {
       if (event.target.checked) {
         const newSelecteds = rows.map((n) => n.id);
-        setSelected(newSelecteds);
         onRowSelect(newSelecteds);
         return;
       }
-      setSelected([]);
       onRowSelect([]);
     },
     [onRowSelect, rows]
@@ -66,7 +63,6 @@ export default function CustomTable({
         );
       }
 
-      setSelected(newSelected);
       onRowSelect(newSelected);
     },
     [onRowSelect, selected]
@@ -89,10 +85,10 @@ export default function CustomTable({
   return (
     <TableContainer component={Paper}>
       <Table
-          sx={{
-            minWidth: 500,
-          }}
-          aria-label="custom pagination table"
+        sx={{
+          minWidth: 500,
+        }}
+        aria-label="custom pagination table"
       >
         <CustomTableHeader
           disableCheckColumn={disableCheckColumn}

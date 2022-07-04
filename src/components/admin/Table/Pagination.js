@@ -1,11 +1,12 @@
-import { useTheme } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
-import LastPageIcon from "@mui/icons-material/LastPage";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import React, { useCallback } from "react";
-
+import { useTheme } from "@mui/material/styles";
+import { Box, IconButton } from "@mui/material";
+import {
+  FirstPage as FirstPageIcon,
+  LastPage as LastPageIcon,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+} from "@mui/icons-material";
 
 const Pagination = (props) => {
   const theme = useTheme();
@@ -40,10 +41,12 @@ const Pagination = (props) => {
   );
 
   return (
-    <div sx={{
+    <Box
+      sx={{
         flexShrink: 0,
         marginLeft: theme.spacing(2.5),
-    }}>
+      }}
+    >
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
@@ -84,7 +87,7 @@ const Pagination = (props) => {
       >
         {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
-    </div>
+    </Box>
   );
 };
 

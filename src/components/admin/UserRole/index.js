@@ -71,7 +71,7 @@ const UserRole = () => {
     [navigate]
   );
 
-  const handlerDeleteClick = async (event) => {
+  const handlerDeleteClick = async () => {
     await dispatch(deleteSome(selected));
     dispatch(snackBarShow("success", "Данные успешно удалены!"));
     handlerRowSelect([]);
@@ -92,7 +92,7 @@ const UserRole = () => {
     [dispatch]
   );
 
-  const handlerOpenDialog = async (event) => {
+  const handlerOpenDialog = async () => {
     let countReferences = 0;
     try {
       const response = await userRoleApi.checkReference(selected);
@@ -137,6 +137,7 @@ const UserRole = () => {
       <CustomTable
         rows={userRoleList}
         headCells={headCells}
+        selected={selected}
         onRowSelect={handlerRowSelect}
         page={page}
         rowsPerPage={rowsPerPage}
@@ -159,7 +160,7 @@ const UserRole = () => {
             "Вы подтверждаете удаление выделенных записей?"
           )
         }
-        onClose={(event) => setOpenDialog(false)}
+        onClose={() => setOpenDialog(false)}
         onSuccess={handlerDeleteClick}
       />
     </>

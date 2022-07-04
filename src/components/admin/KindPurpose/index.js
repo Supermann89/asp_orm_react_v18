@@ -17,7 +17,6 @@ import ConfirmDialog from "../../common/ConfirmDialog";
 import { snackBarShow } from "../../../actions/commonActions";
 import { clear } from "../../../actions/userActions";
 
-
 const KindPurpose = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -71,7 +70,7 @@ const KindPurpose = () => {
     [navigate]
   );
 
-  const handlerDeleteClick = async (event) => {
+  const handlerDeleteClick = async () => {
     await dispatch(deleteSome(selected));
     dispatch(snackBarShow("success", "Данные успешно удалены!"));
     handlerRowSelect([]);
@@ -95,11 +94,12 @@ const KindPurpose = () => {
   return (
     <>
       <h1>Виды целей</h1>
-      <Box display="flex"
-           justifyContent="flex-end"
-           sx={{
-             paddingRight: "3em",
-           }}
+      <Box
+        display="flex"
+        justifyContent="flex-end"
+        sx={{
+          paddingRight: "3em",
+        }}
       >
         <IconButton
           aria-label="add"
@@ -113,7 +113,7 @@ const KindPurpose = () => {
           aria-label="delete"
           color="error"
           disabled={selected.length === 0}
-          onClick={(event) => setOpenDialog(true)}
+          onClick={() => setOpenDialog(true)}
           size="large"
         >
           <DeleteForeverIcon fontSize="large" />
@@ -123,6 +123,7 @@ const KindPurpose = () => {
       <CustomTable
         rows={kindPurposeList}
         headCells={headCells}
+        selected={selected}
         onRowSelect={handlerRowSelect}
         page={page}
         rowsPerPage={rowsPerPage}
@@ -132,7 +133,7 @@ const KindPurpose = () => {
       <ConfirmDialog
         open={openDialog}
         content={"Вы подтверждаете удаление выделенных записей?"}
-        onClose={(event) => setOpenDialog(false)}
+        onClose={() => setOpenDialog(false)}
         onSuccess={handlerDeleteClick}
       />
     </>
